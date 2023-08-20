@@ -1,0 +1,13 @@
+.searchBar {
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  &__input {
+    height: 2rem;
+    border: solid 1px;
+    border-radius: 5px;
+    width: 35vw;
+    padding: 0.5em;
+  }
+}

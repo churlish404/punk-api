@@ -1,0 +1,43 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: blanchedalmond;
+
+  &__filters {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+
+    .nav__filter-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .nav__filter-submit {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1em;
+      font-size: 2rem;
+      cursor: pointer;
+      background-color: darkblue;
+      color: whitesmoke;
+      border: none;
+    }
+    .nav__filter-submit:hover {
+      background-color: magenta;
+      color: black;
+    }
+  }
+}
