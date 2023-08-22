@@ -13,8 +13,11 @@ const Cardlist = ({ beers }: CardListProps) => {
         key={index}
         name={beer.name}
         tagline={beer.tagline}
+        firstBrewed={beer.first_brewed}
         image={beer.image_url}
         abv={beer.abv}
+        ibu={beer.ibu}
+        description={beer.description}
       />
     );
   });

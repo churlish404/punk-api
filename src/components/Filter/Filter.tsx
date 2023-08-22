@@ -1,14 +1,20 @@
 import "./Filter.scss";
+import { ChangeEventHandler } from "react";
 
 type FilterProps = {
   label: string;
+  handleChecked: ChangeEventHandler<HTMLInputElement>;
 };
 
-const Filter = ({ label }: FilterProps) => {
+const Filter = ({ label, handleChecked }: FilterProps) => {
   return (
     <div className="filter">
       <label className="filter__label">{label}</label>
-      <input className="filter__input" type="checkbox" />
+      <input
+        className="filter__input"
+        type="checkbox"
+        onChange={handleChecked}
+      />
     </div>
   );
 };

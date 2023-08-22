@@ -1,11 +1,15 @@
 import "./Main.scss";
-import beers from "../../data/beers";
-import FilterList from "../../containers/FilterList/FilterList";
 import Cardlist from "../../containers/CardList/Cardlist";
-const Main = () => {
+import { Beer } from "../../types/beer";
+
+type MainProps = {
+  beer: Beer[];
+};
+
+const Main = ({ beer }: MainProps) => {
   return (
     <div className="main-content">
-      <Cardlist beers={beers} />
+      <Cardlist beers={beer} />
     </div>
   );
 };

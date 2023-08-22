@@ -2,13 +2,17 @@ import "./Nav.scss";
 import "../SearchBar/SearchBar";
 import SearchBar from "../SearchBar/SearchBar";
 import FilterList from "../../containers/FilterList/FilterList";
-import { useState } from "react";
+import { useState, ChangeEventHandler } from "react";
 
-const Nav = () => {
+type NavProps = {
+  handleChecked: ChangeEventHandler<HTMLInputElement>;
+};
+
+const Nav = ({ handleChecked }: NavProps) => {
   const [showNav, setShowNav] = useState<boolean>(false);
 
   const toggleFilter = () => {
-    setShowNav((prevState) => !prevState);
+    setShowNav(!showNav);
   };
   return (
     <nav className="nav">
@@ -25,8 +29,9 @@ const Nav = () => {
             className="nav__filter-close image"
             src="../../../public/assets/images/close_FILL0_wght400_GRAD0_opsz48.svg"
             alt="close icon"
+            onClick={toggleFilter}
           />
-          <FilterList />
+          <FilterList handleChecked={handleChecked} />
           <button className="nav__filter-submit button" type="submit">
             Apply filters
           </button>
