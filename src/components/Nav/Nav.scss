@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-  background-color: $color-blue;
+  background-color: $color-light;
 
   &__filters {
     position: absolute;
@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: $color-light;
 
     .nav__filter-close {
       position: absolute;
@@ -33,12 +33,12 @@
       padding: 1em;
       font-size: 2rem;
       cursor: pointer;
-      background-color: darkblue;
+      background-color: $color-blue;
       color: whitesmoke;
       border: none;
     }
     .nav__filter-submit:hover {
-      background-color: magenta;
+      background-color: $color-blue;
       color: black;
     }
   }

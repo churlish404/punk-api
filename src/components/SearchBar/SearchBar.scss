@@ -1,13 +1,17 @@
+@use "../../variables.scss" as *;
 .searchBar {
+  width: clamp(10rem, 50%, 230px);
+
   &__label {
     display: block;
     margin-bottom: 0.5rem;
+    color: $color-dark;
   }
   &__input {
     height: 2rem;
     border: solid 1px;
     border-radius: 5px;
-    width: 35vw;
     padding: 0.5em;
+    width: 100%;
   }
 }

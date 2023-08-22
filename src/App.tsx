@@ -9,7 +9,9 @@ function App() {
 
   const getBeers = async () => {
     try {
-      const response = await fetch("https://api.punkapi.com/v2/beers/");
+      const response = await fetch(
+        "https://api.punkapi.com/v2/beers?page=2&per_page=80"
+      );
       const data = await response.json();
       // if (response.status.toString().includes("4")) {
       //   setBeers("Loading");

@@ -1,9 +1,11 @@
+@use "../../variables.scss" as *;
+
 .filter {
   display: flex;
   justify-content: space-between;
 
   &__input {
-    accent-color: magenta;
+    accent-color: $color-blue;
     width: 1.5rem;
     aspect-ratio: 1/1;
     cursor: pointer;

@@ -1,28 +1,82 @@
 @use "../../variables.scss" as *;
 
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 0.5rem;
   background-color: $color-light;
-  margin: 1rem auto;
+  margin: 2rem auto;
   padding: 1.5em;
   border: solid $color-white 1px;
-  border-radius: 6px;
-  height: 35rem;
+  border-radius: 8px;
+  height: 40rem;
+
+  &__heading {
+    font-size: 2rem;
+  }
+
+  &__headers,
+  &__secondaryInfo {
+    grid-column: 1 / span2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-block: $color-dark solid;
+    margin-right: 0.5rem;
+  }
+
+  &__image-wrapper,
+  &__detail {
+    grid-row: 3 / 11;
+    border-left: $color-dark solid;
+  }
 
   &__image-wrapper {
-    height: 18rem;
-    width: auto;
-    margin: 1.5rem auto;
+    height: auto;
+    width: 8rem;
+    padding: 1em;
+    border: $color-dark solid;
   }
+
+  // if beer is keg only, keg class added to card on component load
+  // fix stretch of keg image
+
+  &__image-wrapper:has(.keg) {
+    height: 25rem;
+    width: 8rem;
+    padding: 0;
+  }
+
   &__image {
     height: 100%;
     width: 100%;
   }
-  &__text {
+  &__detail {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    word-wrap: break-word;
+    padding: 1em;
+
+    .card__link-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+
+      .card__link--brewing,
+      .card__link--food {
+        border-radius: 50%;
+        border: $color-dark solid;
+        padding: 0.5em;
+      }
+
+      .card__link--food {
+        background-color: $color-accent;
+      }
+      .card__link--brewing {
+        background-color: $color-blue;
+      }
+    }
   }
 }

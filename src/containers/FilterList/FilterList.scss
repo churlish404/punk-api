@@ -1,4 +1,7 @@
+@use "../../variables.scss" as *;
+
 .filterList {
+  color: $color-dark;
   display: flex;
   flex-direction: column;
   justify-content: center;

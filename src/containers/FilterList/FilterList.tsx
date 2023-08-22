@@ -10,7 +10,7 @@ const FilterList = ({ handleChecked }: FilterListProps) => {
   const filterLabels = [
     "High ABV ( > 6% )",
     "Classic Range",
-    "Acidic (ph < 4)",
+    "Sour (ph < 4)",
     "Gluten Free",
   ];
 
