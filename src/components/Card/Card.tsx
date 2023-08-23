@@ -28,7 +28,7 @@ const Card = ({
         <p>IBU: {ibu}</p>
       </div>
       <div className="card__secondaryInfo">
-        <p>{tagline}</p>
+        <p className="card__tagline">{tagline}</p>
         <p>created: {firstBrewed}</p>
       </div>
       <div className="card__image-wrapper">

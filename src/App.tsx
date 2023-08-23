@@ -6,35 +6,52 @@ import "./App.scss";
 
 function App() {
   const [beers, setBeers] = useState<Beer[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [abvLimit, setAbvLimit] = useState<number>(0);
 
-  const getBeers = async () => {
-    try {
-      const response = await fetch(
-        "https://api.punkapi.com/v2/beers?page=2&per_page=80"
-      );
-      const data = await response.json();
-      // if (response.status.toString().includes("4")) {
-      //   setBeers("Loading");
-      // }
-      setBeers(data);
-    } catch (error) {
-      throw new Error("Problem with fetch");
-    }
+  const getBeers = async (
+    url: string = "https://api.punkapi.com/v2/beers/"
+  ) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setBeers(data);
+
+    // ignore -> extension to get all the beers
+    // const rawData: Beer[] = [];
+    // let page = 1;
+    // do {
+    //   const response = await fetch(`${url}?page=${page}&per_page=80`);
+    //   const data = await response.json();
+
+    //   rawData.push(data);
+    //   page++;
+    // } while (page < 6);
+
+    // const allBeers = rawData.flat();
+    // setBeers({ query: "", beers: allBeers });
   };
 
-  // use effect hook calling API when component mounts but empty
-  // dependency [] means getBeers() not called infinitely
+  const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const userInput = event.target.value.toLowerCase();
+    setSearchTerm(userInput);
+    const searchedBeers = beers.filter((beer) =>
+      userInput == "" ? beer : beer.name.toLowerCase().includes(searchTerm)
+    );
+    console.log(searchedBeers);
+    setBeers(searchedBeers);
+  };
+
+  // const filterBeers = () => {
+
+  // }
+
   useEffect(() => {
     getBeers();
   }, []);
 
-  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.currentTarget);
-  };
-
   return (
     <>
-      <Nav handleChecked={handleChecked} />
+      <Nav handleSearchInput={handleSearchInput} />
       <Main beer={beers} />
     </>
   );

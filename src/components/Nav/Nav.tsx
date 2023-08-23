@@ -2,18 +2,40 @@ import "./Nav.scss";
 import "../SearchBar/SearchBar";
 import SearchBar from "../SearchBar/SearchBar";
 import FilterList from "../../containers/FilterList/FilterList";
-import { useState, ChangeEventHandler } from "react";
+import {
+  useState,
+  ChangeEventHandler,
+  ChangeEvent,
+  MouseEventHandler,
+} from "react";
 
 type NavProps = {
-  handleChecked: ChangeEventHandler<HTMLInputElement>;
+  handleSearchInput: ChangeEventHandler<HTMLInputElement>;
+  applyFilters: MouseEventHandler<HTMLButtonElement>;
 };
 
-const Nav = ({ handleChecked }: NavProps) => {
+const Nav = ({ handleSearchInput, applyFilters }: NavProps) => {
   const [showNav, setShowNav] = useState<boolean>(false);
+
+  const [isAbvChecked, setIsAbvChecked] = useState<boolean>(false);
+  const [isClassicChecked, setIsClassicChecked] = useState<boolean>(false);
+  const [isSourChecked, setIsSourChecked] = useState<boolean>(false);
 
   const toggleFilter = () => {
     setShowNav(!showNav);
   };
+
+  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
+    const checkedFilter = event.target;
+    checkedFilter.previousSibling!.textContent?.includes("ABV")
+      ? setIsAbvChecked(!isAbvChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Classic")
+      ? setIsClassicChecked(!isClassicChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Sour")
+      ? setIsSourChecked(!isSourChecked)
+      : null;
+  };
+
   return (
     <nav className="nav">
       <img
@@ -22,7 +44,7 @@ const Nav = ({ handleChecked }: NavProps) => {
         alt="menu icon"
         onClick={toggleFilter}
       />
-      <SearchBar />
+      <SearchBar handleSearchInput={handleSearchInput} />
       {showNav && (
         <div className="nav__filters">
           <img
@@ -31,8 +53,17 @@ const Nav = ({ handleChecked }: NavProps) => {
             alt="close icon"
             onClick={toggleFilter}
           />
-          <FilterList handleChecked={handleChecked} />
-          <button className="nav__filter-submit button" type="submit">
+          <FilterList
+            isAbvChecked={isAbvChecked}
+            isClassicChecked={isClassicChecked}
+            isSourChecked={isSourChecked}
+            handleChecked={handleChecked}
+          />
+          <button
+            className="nav__filter-submit button"
+            type="submit"
+            onClick={applyFilters}
+          >
             Apply filters
           </button>
         </div>
