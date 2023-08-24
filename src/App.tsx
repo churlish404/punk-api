@@ -79,11 +79,12 @@ function App() {
     isClassicChecked ? setClassic("?brewed_before=01-2008") : setClassic("");
 
     const sourBeers = beers.filter((beer) => beer.ph < 4);
-    console.log(sourBeers);
+    isSourChecked ? setBeers(sourBeers) : setBeers(beers);
   };
 
   useEffect(() => {
     searchTerm ? searchedBeers() : getBeers();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, highABV, classic]);
 
