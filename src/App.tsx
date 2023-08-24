@@ -1,13 +1,13 @@
 import Main from "./components/Main/Main";
 import Nav from "./components/Nav/Nav";
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent, MouseEvent } from "react";
 import { Beer } from "./types/beer";
 import "./App.scss";
 
 function App() {
   const [beers, setBeers] = useState<Beer[]>([]);
+  const [searchBeers, setSearchBeers] = useState<Beer[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [abvLimit, setAbvLimit] = useState<number>(0);
 
   const getBeers = async (
     url: string = "https://api.punkapi.com/v2/beers/"
@@ -31,28 +31,32 @@ function App() {
     // setBeers({ query: "", beers: allBeers });
   };
 
+  // handles
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     const userInput = event.target.value.toLowerCase();
     setSearchTerm(userInput);
-    const searchedBeers = beers.filter((beer) =>
-      userInput == "" ? beer : beer.name.toLowerCase().includes(searchTerm)
-    );
-    console.log(searchedBeers);
-    setBeers(searchedBeers);
   };
 
-  // const filterBeers = () => {
+  const searchedBeers = () => {
+    const searchedBeers = beers.filter((beer) =>
+      searchTerm == "" ? beer : beer.name.toLowerCase().includes(searchTerm)
+    );
 
-  // }
+    setSearchBeers(searchedBeers);
+  };
+
+  const filterBeers = (event: MouseEvent<HTMLButtonElement>) => {
+    console.log(event);
+  };
 
   useEffect(() => {
-    getBeers();
-  }, []);
+    searchTerm ? searchedBeers() : getBeers();
+  }, [searchTerm]);
 
   return (
     <>
-      <Nav handleSearchInput={handleSearchInput} />
-      <Main beer={beers} />
+      <Nav applyFilters={filterBeers} handleSearchInput={handleSearchInput} />
+      <Main beer={searchTerm ? searchBeers : beers} />
     </>
   );
 }

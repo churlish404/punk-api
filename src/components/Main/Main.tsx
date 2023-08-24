@@ -1,4 +1,3 @@
-import "./Main.scss";
 import Cardlist from "../../containers/CardList/Cardlist";
 import { Beer } from "../../types/beer";
 
@@ -8,7 +7,7 @@ type MainProps = {
 
 const Main = ({ beer }: MainProps) => {
   return (
-    <div className="main-content">
+    <div>
       <Cardlist beers={beer} />
     </div>
   );

@@ -34,6 +34,8 @@ const Nav = ({ handleSearchInput, applyFilters }: NavProps) => {
       : checkedFilter.previousSibling!.textContent?.includes("Sour")
       ? setIsSourChecked(!isSourChecked)
       : null;
+
+    console.log(event);
   };
 
   return (

@@ -7,13 +7,14 @@ type FilterProps = {
   handleChecked: ChangeEventHandler<HTMLInputElement>;
 };
 
-const Filter = ({ label, handleChecked }: FilterProps) => {
+const Filter = ({ label, handleChecked, isChecked }: FilterProps) => {
   return (
     <div className="filter">
       <label className="filter__label">{label}</label>
       <input
         className="filter__input"
         type="checkbox"
+        checked={isChecked}
         onChange={handleChecked}
       />
     </div>

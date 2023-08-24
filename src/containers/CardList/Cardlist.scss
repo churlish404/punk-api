@@ -10,9 +10,5 @@
     display: grid;
     grid-template-columns: repeat(2, 22rem);
     column-gap: 1.5rem;
-
-    .cards:nth-child(even) {
-      background-color: red;
-    }
   }
 }
