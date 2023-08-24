@@ -65,9 +65,9 @@ const Filter = ({ label, handleChecked, isChecked }: FilterProps) => {
 };
 ```
 
-## State control
+## React Hooks
 
-I used useEffect() and state variables to control the rendering of the beers. The dependency arrary contains various state variables that when changed would cause a re-render of the page.
+I used useEffect() and useState() variables to control the rendering of the beers. The dependency arrary contains various state variables that when changed would cause a re-render of the page.
 
 ```
   useEffect(() => {
