@@ -2,40 +2,30 @@ import "./Nav.scss";
 import "../SearchBar/SearchBar";
 import SearchBar from "../SearchBar/SearchBar";
 import FilterList from "../../containers/FilterList/FilterList";
-import {
-  useState,
-  ChangeEventHandler,
-  ChangeEvent,
-  MouseEventHandler,
-} from "react";
+import { useState, ChangeEventHandler, MouseEventHandler } from "react";
 
 type NavProps = {
   handleSearchInput: ChangeEventHandler<HTMLInputElement>;
-  applyFilters: MouseEventHandler<HTMLButtonElement>;
+  handleChecked: ChangeEventHandler<HTMLInputElement>;
+  applyFilter: MouseEventHandler<HTMLButtonElement>;
+  isAbvChecked: boolean;
+  isClassicChecked: boolean;
+  isSourChecked: boolean;
+  // applyFilters: MouseEventHandler<HTMLButtonElement>;
 };
 
-const Nav = ({ handleSearchInput, applyFilters }: NavProps) => {
+const Nav = ({
+  handleSearchInput,
+  handleChecked,
+  applyFilter,
+  isAbvChecked,
+  isClassicChecked,
+  isSourChecked,
+}: NavProps) => {
   const [showNav, setShowNav] = useState<boolean>(false);
-
-  const [isAbvChecked, setIsAbvChecked] = useState<boolean>(false);
-  const [isClassicChecked, setIsClassicChecked] = useState<boolean>(false);
-  const [isSourChecked, setIsSourChecked] = useState<boolean>(false);
 
   const toggleFilter = () => {
     setShowNav(!showNav);
-  };
-
-  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
-    const checkedFilter = event.target;
-    checkedFilter.previousSibling!.textContent?.includes("ABV")
-      ? setIsAbvChecked(!isAbvChecked)
-      : checkedFilter.previousSibling!.textContent?.includes("Classic")
-      ? setIsClassicChecked(!isClassicChecked)
-      : checkedFilter.previousSibling!.textContent?.includes("Sour")
-      ? setIsSourChecked(!isSourChecked)
-      : null;
-
-    console.log(event);
   };
 
   return (
@@ -64,7 +54,7 @@ const Nav = ({ handleSearchInput, applyFilters }: NavProps) => {
           <button
             className="nav__filter-submit button"
             type="submit"
-            onClick={applyFilters}
+            onClick={applyFilter}
           >
             Apply filters
           </button>

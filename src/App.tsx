@@ -9,6 +9,24 @@ function App() {
   const [searchBeers, setSearchBeers] = useState<Beer[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
+  // filter checkbox states
+  const [isAbvChecked, setIsAbvChecked] = useState<boolean>(false);
+  const [isClassicChecked, setIsClassicChecked] = useState<boolean>(false);
+  const [isSourChecked, setIsSourChecked] = useState<boolean>(false);
+
+  // function to pass correct boolean state "checked/unchecked" to each filter component
+  // previousSibling refers to corresponding checkbox label
+  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
+    const checkedFilter = event.target;
+    checkedFilter.previousSibling!.textContent?.includes("ABV")
+      ? setIsAbvChecked(!isAbvChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Classic")
+      ? setIsClassicChecked(!isClassicChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Sour")
+      ? setIsSourChecked(!isSourChecked)
+      : null;
+  };
+
   const getBeers = async (
     url: string = "https://api.punkapi.com/v2/beers/"
   ) => {
@@ -51,11 +69,19 @@ function App() {
 
   useEffect(() => {
     searchTerm ? searchedBeers() : getBeers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   return (
     <>
-      <Nav applyFilters={filterBeers} handleSearchInput={handleSearchInput} />
+      <Nav
+        isAbvChecked={isAbvChecked}
+        isClassicChecked={isClassicChecked}
+        isSourChecked={isSourChecked}
+        applyFilter={filterBeers}
+        handleSearchInput={handleSearchInput}
+        handleChecked={handleChecked}
+      />
       <Main beer={searchTerm ? searchBeers : beers} />
     </>
   );
