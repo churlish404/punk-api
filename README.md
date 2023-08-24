@@ -17,10 +17,11 @@ I used React/Typescript/Vite to build the app and deployed it using GH Pages on 
 ## Features
 
 + Search function to search 300+ beers pulled from API
-+ Filters are in the nav menu to filter by Sour, high ABV & Classic beers (made pre 2010)
-+ select filter checkbox and click apply filters, will need to close the menu to view results
++ Filters are in the nav menu to filter by Sour, high ABV and classic beers (made pre-2010)
++ Select filter checkbox and click apply filters, will need to close the menu to view the results
 + Each beer's most important information is displayed on a card
-+ Click the food button to get detailed food pairings or the brewer button to enter Brewers Corner
++ Enter Brewer's corner by clicking blue button on card
++ Feature coming soon (Click the food button to get detailed food pairings)
 
 ## Code snippets
 
