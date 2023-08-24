@@ -15,7 +15,11 @@ const FilterList = ({
   isClassicChecked,
   isSourChecked,
 }: FilterListProps) => {
-  const filterLabels = ["High ABV ( > 6% )", "Classic Range", "Sour (ph < 4)"];
+  const filterLabels = [
+    "High ABV ( > 6% )",
+    "Classic Range (pre 2010)",
+    "Sour (ph < 4)",
+  ];
 
   const filterJSX = filterLabels.map((label, idx) => (
     <Filter

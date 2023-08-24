@@ -14,6 +14,10 @@ function App() {
   const [isClassicChecked, setIsClassicChecked] = useState<boolean>(false);
   const [isSourChecked, setIsSourChecked] = useState<boolean>(false);
 
+  // api string parameters
+  const [highABV, setHighABV] = useState<string>("");
+  const [classic, setClassic] = useState<string>("");
+
   // function to pass correct boolean state "checked/unchecked" to each filter component
   // previousSibling refers to corresponding checkbox label
   const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +32,7 @@ function App() {
   };
 
   const getBeers = async (
-    url: string = "https://api.punkapi.com/v2/beers/"
+    url: string = `https://api.punkapi.com/v2/beers${highABV}${classic}`
   ) => {
     const response = await fetch(url);
     const data = await response.json();
@@ -49,12 +53,13 @@ function App() {
     // setBeers({ query: "", beers: allBeers });
   };
 
-  // handles
+  // handles user searching
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     const userInput = event.target.value.toLowerCase();
     setSearchTerm(userInput);
   };
 
+  // sets search beers to those matching the search term
   const searchedBeers = () => {
     const searchedBeers = beers.filter((beer) =>
       searchTerm == "" ? beer : beer.name.toLowerCase().includes(searchTerm)
@@ -63,14 +68,24 @@ function App() {
     setSearchBeers(searchedBeers);
   };
 
+  //API param syntax
+
+  // "https://api.punkapi.com/v2/beers?abv_gt=6" for higher than 6% beers
+  // "https://api.punkapi.com/v2/beers?brewed_before=01-2010" beers pre 2010
+
   const filterBeers = (event: MouseEvent<HTMLButtonElement>) => {
-    console.log(event);
+    event.preventDefault();
+    isAbvChecked ? setHighABV("?abv_gt=6") : setHighABV("");
+    isClassicChecked ? setClassic("?brewed_before=01-2008") : setClassic("");
+
+    const sourBeers = beers.filter((beer) => beer.ph < 4);
+    console.log(sourBeers);
   };
 
   useEffect(() => {
     searchTerm ? searchedBeers() : getBeers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm]);
+  }, [searchTerm, highABV, classic]);
 
   return (
     <>

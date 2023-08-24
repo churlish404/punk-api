@@ -3,6 +3,7 @@ import { ChangeEventHandler } from "react";
 
 type FilterProps = {
   label: string;
+  key: string;
   isChecked: boolean;
   handleChecked: ChangeEventHandler<HTMLInputElement>;
 };
