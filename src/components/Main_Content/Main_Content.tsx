@@ -5,12 +5,12 @@ type MainProps = {
   beer: Beer[];
 };
 
-const Main = ({ beer }: MainProps) => {
+const Main_Content = ({ beer }: MainProps) => {
   return (
-    <div>
+    <div className="main">
       <Cardlist beers={beer} />
     </div>
   );
 };
 
-export default Main;
+export default Main_Content;

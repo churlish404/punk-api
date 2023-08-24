@@ -1,4 +1,4 @@
-import Main from "./components/Main/Main";
+import Main_Content from "./components/Main_Content/Main_Content";
 import Nav from "./components/Nav/Nav";
 import { useState, useEffect, ChangeEvent, MouseEvent } from "react";
 import { Beer } from "./types/beer";
@@ -98,7 +98,7 @@ function App() {
         handleSearchInput={handleSearchInput}
         handleChecked={handleChecked}
       />
-      <Main beer={searchTerm ? searchBeers : beers} />
+      <Main_Content beer={searchTerm ? searchBeers : beers} />
     </>
   );
 }
