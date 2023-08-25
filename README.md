@@ -1,27 +1,78 @@
-# React + TypeScript + Vite
+# Punk API Beer Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+The project is a beer catalogue allowing you to search your favourite beers from the Punk API https://punkapi.com/documentation/v2. 
+I used React/Typescript/Vite to build the app and deployed it using GH Pages on https://churlish404.github.io/punk-api. Please follow the instructions below to run the program locally.
 
-Currently, two official plugins are available:
+## Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
++ `git clone "https://github.com/churlish404/punk-api.git"`
++ `npm install` installs dependencies
++ `npm run dev` will open the development server
 
-## Expanding the ESLint configuration
+## Component Tree
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![punk-api-component-tree](https://github.com/churlish404/punk-api/assets/101139824/d45554dd-f4d0-490c-b117-fad94cc70c70)
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
++ Search function to search 300+ beers pulled from API
++ Filters are in the nav menu to filter by Sour, high ABV and classic beers (made pre-2010)
++ Select filter checkbox and click apply filters, will need to close the menu to view the results
++ Each beer's most important information is displayed on a card
++ Enter Brewer's corner by clicking blue button on card
++ Feature coming soon (Click the food button to get detailed food pairings)
+
+## Code snippets
+
+My design aimed to make the components as reusable as possible at this stage in my react journey with the majority of the logic housed within app.jsx and passed to components as props
+
+
+App.jsx
+```
+  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
+    const checkedFilter = event.target;
+    checkedFilter.previousSibling!.textContent?.includes("ABV")
+      ? setIsAbvChecked(!isAbvChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Classic")
+      ? setIsClassicChecked(!isClassicChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Sour")
+      ? setIsSourChecked(!isSourChecked)
+      : null;
+  };
+```
+Filter.jsx
+```
+type FilterProps = {
+  label: string;
+  key: string;
+  isChecked: boolean;
+  handleChecked: ChangeEventHandler<HTMLInputElement>;
+};
+
+const Filter = ({ label, handleChecked, isChecked }: FilterProps) => {
+  return (
+    <div className="filter">
+      <label className="filter__label">{label}</label>
+      <input
+        className="filter__input"
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleChecked}
+      />
+    </div>
+  );
+};
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## React Hooks
+
+I used useEffect() and useState() variables to control the rendering of the beers. The dependency arrary contains various state variables that when changed would cause a re-render of the page.
+
+```
+  useEffect(() => {
+    searchTerm ? searchedBeers() : getBeers();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, highABV, classic]);
+```
