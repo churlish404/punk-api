@@ -34,24 +34,19 @@ function App() {
   };
 
   const getBeers = async (url: string = `https://api.punkapi.com/v2/beers`) => {
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // setBeers(data);
-
     const rawData: Beer[] = [];
     let page = 1;
+
     do {
       const response = await fetch(
-        `${url}${classic}${highABV}?page=${page}&per_page=80`
+        `${url}?${classic}${highABV}&page=${page}&per_page=80`
       );
       const data = await response.json();
-
       rawData.push(data);
       page++;
     } while (page < 6);
 
     const allBeers = rawData.flat();
-    console.log(allBeers);
     setBeers(allBeers);
   };
 
@@ -77,8 +72,8 @@ function App() {
 
   const filterBeers = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    isAbvChecked ? setHighABV("?abv_gt=6") : setHighABV("");
-    isClassicChecked ? setClassic("?brewed_before=01-2010") : setClassic("");
+    isAbvChecked ? setHighABV("&abv_gt=6") : setHighABV("");
+    isClassicChecked ? setClassic("&brewed_before=01-2010") : setClassic("");
 
     const sourBeers = beers.filter((beer) => beer.ph < 4);
     isSourChecked ? setBeers(sourBeers) : setBeers(beers);

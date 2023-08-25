@@ -1,0 +1,90 @@
+@use "../../variables.scss" as *;
+.brewerInfo {
+  display: grid;
+  row-gap: 3rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(4, 1fr);
+  background-color: $color-brew;
+  color: $color-black;
+
+  &__heading {
+    padding: 1em;
+  }
+
+  &__image-wrapper {
+    width: clamp(100px, 5rem, 250px);
+    height: 80%;
+    justify-self: center;
+    align-self: center;
+
+    .brewerInfo__image {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__description,
+  &__tip {
+    padding: 3em;
+  }
+
+  &__description {
+    margin-inline: 3rem;
+  }
+
+  &__tip {
+    border: dashed $color-accent 5px;
+  }
+
+  &__table {
+    grid-column: 1/3;
+    padding: 1em;
+    border: 1rem;
+    margin: 0 auto;
+    border: $color-black solid;
+    border-collapse: collapse;
+
+    th,
+    tr,
+    td {
+      border: $color-black solid;
+    }
+    td {
+      text-align: center;
+      vertical-align: center;
+      padding: 1em;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .brewerInfo {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 1fr auto auto;
+    font-size: 1.25rem;
+
+    &__heading {
+      grid-column: 1/2;
+      font-size: 3rem;
+    }
+
+    &__image-wrapper {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      height: 100%;
+      padding: 0;
+    }
+    &__tip {
+      grid-column: 3/5;
+    }
+    &__description {
+      grid-row: 2/3;
+      grid-column: 1 / 5;
+    }
+    &__table {
+      grid-column: 1 / span4;
+      grid-row: 3/5;
+      font-size: 2rem;
+    }
+  }
+}

@@ -15,8 +15,11 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
     return <p> Couldn't find album with that id</p>;
   }
 
+  console.log(beer?.description);
   return (
     <div className="brewerInfo">
+      <h1 className="brewerInfo__heading">{beer!.name}</h1>
+
       <div className="brewerInfo__image-wrapper">
         <img
           className="brewerInfo__image"
@@ -24,9 +27,8 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
           alt="beer image"
         />
       </div>
-      <h1 className="brewerInfo__heading">{beer!.name}</h1>
       <p className="brewerInfo__description">{beer.description} </p>
-      <aside>
+      <aside className="brewerInfo__tip">
         <div className="brewerInfo__tipIconWrapper">
           <img
             className="brewerInfo__icon"
@@ -34,9 +36,9 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
             alt="question mark"
           />
         </div>
-        <p>{beer.brewers_tips}</p>
+        <p className="brewerInfo__tip-text">Top Tip: {beer.brewers_tips}</p>
       </aside>
-      <table>
+      <table className="brewerInfo__table">
         <tr>
           <th>Metric</th>
           <th>Value</th>
