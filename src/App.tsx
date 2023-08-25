@@ -6,7 +6,7 @@ import { Beer } from "./types/beer";
 import "./App.scss";
 import BrewersCorner from "./components/BrewersCorner/BrewersCorner";
 
-function App() {
+export const App = () => {
   const [beers, setBeers] = useState<Beer[]>([]);
   const [searchBeers, setSearchBeers] = useState<Beer[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -19,19 +19,6 @@ function App() {
   // api string params
   const [highABV, setHighABV] = useState<string>("");
   const [classic, setClassic] = useState<string>("");
-
-  // function to pass correct boolean state "checked/unchecked" to each filter component
-  // previousSibling refers to corresponding checkbox label
-  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
-    const checkedFilter = event.target;
-    checkedFilter.previousSibling!.textContent?.includes("ABV")
-      ? setIsAbvChecked(!isAbvChecked)
-      : checkedFilter.previousSibling!.textContent?.includes("Classic")
-      ? setIsClassicChecked(!isClassicChecked)
-      : checkedFilter.previousSibling!.textContent?.includes("Sour")
-      ? setIsSourChecked(!isSourChecked)
-      : null;
-  };
 
   const getBeers = async (url: string = `https://api.punkapi.com/v2/beers`) => {
     const rawData: Beer[] = [];
@@ -50,7 +37,6 @@ function App() {
     setBeers(allBeers);
   };
 
-  // handles user searching
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     const userInput = event.target.value.toLowerCase();
     setSearchTerm(userInput);
@@ -65,10 +51,18 @@ function App() {
     setSearchBeers(searchedBeers);
   };
 
-  //API param syntax
-
-  // "https://api.punkapi.com/v2/beers?abv_gt=6" for higher than 6% beers
-  // "https://api.punkapi.com/v2/beers?brewed_before=01-2010" beers pre 2010
+  // function to pass correct boolean state "checked/unchecked" to each filter component
+  // previousSibling refers to corresponding checkbox label
+  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
+    const checkedFilter = event.target;
+    checkedFilter.previousSibling!.textContent?.includes("ABV")
+      ? setIsAbvChecked(!isAbvChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Classic")
+      ? setIsClassicChecked(!isClassicChecked)
+      : checkedFilter.previousSibling!.textContent?.includes("Sour")
+      ? setIsSourChecked(!isSourChecked)
+      : null;
+  };
 
   const filterBeers = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -106,6 +100,6 @@ function App() {
       </HashRouter>
     </div>
   );
-}
+};
 
 export default App;

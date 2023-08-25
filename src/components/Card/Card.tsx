@@ -47,11 +47,6 @@ const Card = ({
       <div className="card__detail">
         <p>{description}</p>
         <div className="card__link-wrapper">
-          <img
-            className="card__link--food"
-            src="../../../public/assets/images/lunch_dining_FILL0_wght400_GRAD0_opsz48.svg"
-            alt="food pairing link"
-          />
           <Link to={`/${id}`} key={id}>
             <img
               className="card__link--brewing"
@@ -59,6 +54,11 @@ const Card = ({
               alt="brewers-corner link"
             />
           </Link>
+          <img
+            className="card__link--food"
+            src="../../../public/assets/images/lunch_dining_FILL0_wght400_GRAD0_opsz48.svg"
+            alt="food pairing link"
+          />
         </div>
       </div>
     </div>

@@ -80,6 +80,11 @@ I used useEffect() and useState() variables to control the rendering of the beer
   }, [searchTerm, highABV, classic]);
 ```
 
+## Testing
+
+- Run test files with `npm run test`
+- used react-testing-library to write tests
+
 ## Screenshots
 
 mobile design:
