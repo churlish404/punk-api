@@ -32,7 +32,7 @@ const Nav = ({
     <nav className="nav">
       <img
         className="nav__open image"
-        src="../../../public/assets/images/menu_FILL0_wght400_GRAD0_opsz48.svg"
+        src="../../assets/images/menu_FILL0_wght400_GRAD0_opsz48.svg"
         alt="menu icon"
         onClick={toggleFilter}
       />
@@ -41,7 +41,7 @@ const Nav = ({
         <div className="nav__filters">
           <img
             className="nav__filter-close image"
-            src="../../../public/assets/images/close_FILL0_wght400_GRAD0_opsz48.svg"
+            src="../../assets/images/close_FILL0_wght400_GRAD0_opsz48.svg"
             alt="close icon"
             onClick={toggleFilter}
           />

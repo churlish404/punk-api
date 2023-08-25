@@ -50,13 +50,13 @@ const Card = ({
           <Link to={`/${id}`} key={id}>
             <img
               className="card__link--brewing"
-              src="../../../public/assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg"
+              src="../../assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg"
               alt="brewers-corner link"
             />
           </Link>
           <img
             className="card__link--food"
-            src="../../../public/assets/images/lunch_dining_FILL0_wght400_GRAD0_opsz48.svg"
+            src="../../assets/images/lunch_dining_FILL0_wght400_GRAD0_opsz48.svg"
             alt="food pairing link"
           />
         </div>

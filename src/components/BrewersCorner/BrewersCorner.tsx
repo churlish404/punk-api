@@ -32,7 +32,7 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
         <div className="brewerInfo__tipIconWrapper">
           <img
             className="brewerInfo__icon"
-            src="../../../public/assets/images/question_mark_FILL0_wght400_GRAD0_opsz48.svg"
+            src="../../assets/images/close_FILL0_wght400_GRAD0_opsz48.svg"
             alt="question mark"
           />
         </div>
