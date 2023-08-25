@@ -1,5 +1,7 @@
 {
   "name": "punk-api",
+  "homepage": "https://churlish404.github.io/punk-api",
+  "author": "luca gilardenghi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +10,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -28,6 +31,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
     "jsdom": "^22.1.0",
     "sass": "^1.66.0",
     "typescript": "^5.0.2",
