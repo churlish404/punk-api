@@ -8,9 +8,13 @@ type CardListProps = {
 
 const Cardlist = ({ beers }: CardListProps) => {
   const cardsJSX = beers.map((beer, index) => {
-    // if (beer.description.length > 250) {
-    //   beer.description = `${beer.description.substring(0, 220)}...`;
-    // }
+    beer.name.length > 30
+      ? (beer.name = `${beer.name.substring(0, 25)}`)
+      : beer.name;
+
+    beer.description.length > 250
+      ? (beer.description = `${beer.description.substring(0, 220)}...`)
+      : beer.description;
 
     return (
       <Card

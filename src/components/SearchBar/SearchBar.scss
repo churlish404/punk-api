@@ -1,6 +1,6 @@
 @use "../../variables.scss" as *;
 .searchBar {
-  width: clamp(10rem, 50%, 230px);
+  width: clamp(10rem, 50%, 400px);
 
   &__label {
     display: block;

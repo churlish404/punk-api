@@ -1,6 +1,6 @@
 import "./BrewersCorner.scss";
 import { Beer } from "../../types/beer";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 type BrewersCornerProps = {
   beers: Beer[];
@@ -12,7 +12,7 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
   const beer = beers.find((beer) => beer.id == (beerId as unknown as number));
 
   if (beer === undefined) {
-    return <p> Couldn't find album with that id</p>;
+    return <p> Couldn't find beer</p>;
   }
 
   console.log(beer?.description);
@@ -64,6 +64,13 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
           <td>{beer.ingredients.malt.map((malt) => malt.name).join(", ")}</td>
         </tr>
       </table>
+      <Link to={"/"}>
+        <img
+          src="../../../public/assets/images/close_FILL0_wght400_GRAD0_opsz48.svg"
+          alt="exit cross"
+          className="brewerInfo__exit"
+        />
+      </Link>
     </div>
   );
 };

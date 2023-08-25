@@ -1,14 +1,23 @@
 @use "../../variables.scss" as *;
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&family=Rufina:wght@400;700&display=swap");
+
 .brewerInfo {
   display: grid;
-  row-gap: 3rem;
+  row-gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(4, 1fr);
   background-color: $color-brew;
   color: $color-black;
 
+  &__exit {
+    position: absolute;
+    top: 6rem;
+    right: 0rem;
+  }
+
   &__heading {
     padding: 1em;
+    font-family: "Rufina", serif;
   }
 
   &__image-wrapper {
@@ -25,15 +34,16 @@
 
   &__description,
   &__tip {
-    padding: 3em;
+    padding: 1em;
   }
 
   &__description {
-    margin-inline: 3rem;
+    margin-inline: 2rem;
   }
 
   &__tip {
     border: dashed $color-accent 5px;
+    margin-right: 1rem 1rem 0 0;
   }
 
   &__table {
@@ -62,6 +72,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: 1fr auto auto;
     font-size: 1.25rem;
+    align-items: center;
 
     &__heading {
       grid-column: 1/2;
@@ -71,8 +82,7 @@
     &__image-wrapper {
       grid-column: 2/3;
       grid-row: 1/2;
-      height: 100%;
-      padding: 0;
+      height: 80%;
     }
     &__tip {
       grid-column: 3/5;
