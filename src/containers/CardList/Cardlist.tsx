@@ -15,6 +15,7 @@ const Cardlist = ({ beers }: CardListProps) => {
     return (
       <Card
         key={index}
+        id={beer.id}
         name={beer.name}
         tagline={beer.tagline}
         firstBrewed={beer.first_brewed}
@@ -22,6 +23,7 @@ const Cardlist = ({ beers }: CardListProps) => {
         abv={beer.abv}
         ibu={beer.ibu}
         description={beer.description}
+        beers={beers}
       />
     );
   });

@@ -23,12 +23,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-block: $color-dark solid;
     margin-right: 2rem;
+  }
+  &__secondaryInfo {
+    border-block: $color-dark solid;
   }
 
   &__tagline {
     font-family: "Lugrasimo", cursive;
+  }
+
+  &__headers {
+    border-top: $color-dark solid;
   }
 
   &__headers p {
@@ -98,13 +104,10 @@
   .card {
     &__image-wrapper {
       width: clamp(100%, 15vw, 15rem);
-      margin: 1rem auto;
+      margin: 1rem 2rem 0 auto;
     }
     &__image-wrapper:not(:has(.keg)) {
       width: clamp(80%, 8vw, 20rem);
     }
   }
-}
-
-@media screen and (min-width: 768px) {
 }

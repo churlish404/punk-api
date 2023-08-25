@@ -1,18 +1,22 @@
 import "./Card.scss";
+import { Beer } from "../../types/beer";
 import { Link } from "react-router-dom";
 
 type CardProps = {
   name: string;
+  id: number;
   tagline: string;
   firstBrewed: string;
   image: string;
   abv: number;
   ibu: number;
   description: string;
+  beers: Beer[];
 };
 
 const Card = ({
   name,
+  id,
   tagline,
   firstBrewed,
   image,
@@ -48,11 +52,13 @@ const Card = ({
             src="../../../public/assets/images/lunch_dining_FILL0_wght400_GRAD0_opsz48.svg"
             alt="food pairing link"
           />
-          <img
-            className="card__link--brewing"
-            src="../../../public/assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg"
-            alt="brewers-corner link"
-          />
+          <Link to={`/${id}`} key={id}>
+            <img
+              className="card__link--brewing"
+              src="../../../public/assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg"
+              alt="brewers-corner link"
+            />
+          </Link>
         </div>
       </div>
     </div>
