@@ -3,6 +3,8 @@ import "../SearchBar/SearchBar";
 import SearchBar from "../SearchBar/SearchBar";
 import FilterList from "../../containers/FilterList/FilterList";
 import { useState, ChangeEventHandler, MouseEventHandler } from "react";
+import menu from "../../assets/images/menu_FILL0_wght400_GRAD0_opsz48.svg";
+import close from "../../assets/images/close_FILL0_wght400_GRAD0_opsz48.svg";
 
 type NavProps = {
   handleSearchInput: ChangeEventHandler<HTMLInputElement>;
@@ -32,7 +34,7 @@ const Nav = ({
     <nav className="nav">
       <img
         className="nav__open image"
-        src="../../assets/images/menu_FILL0_wght400_GRAD0_opsz48.svg"
+        src={menu}
         alt="menu icon"
         onClick={toggleFilter}
       />
@@ -41,7 +43,7 @@ const Nav = ({
         <div className="nav__filters">
           <img
             className="nav__filter-close image"
-            src="../../assets/images/close_FILL0_wght400_GRAD0_opsz48.svg"
+            src={close}
             alt="close icon"
             onClick={toggleFilter}
           />

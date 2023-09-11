@@ -1,6 +1,8 @@
 import "./BrewersCorner.scss";
 import { Beer } from "../../types/beer";
 import { useParams, Link } from "react-router-dom";
+import sportsBar from "../../../public/assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg";
+import close from "../../../public/assets/images/close_FILL0_wght400_GRAD0_opsz48.svg";
 
 type BrewersCornerProps = {
   beers: Beer[];
@@ -14,8 +16,6 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
   if (beer === undefined) {
     return <p> Couldn't find beer</p>;
   }
-
-  console.log(beer?.description);
   return (
     <div className="brewerInfo">
       <h1 className="brewerInfo__heading">{beer!.name}</h1>
@@ -32,7 +32,7 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
         <div className="brewerInfo__tipIconWrapper">
           <img
             className="brewerInfo__icon"
-            src="../../../public/assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg"
+            src={sportsBar}
             alt="question mark"
           />
         </div>
@@ -65,11 +65,7 @@ const BrewersCorner = ({ beers }: BrewersCornerProps) => {
         </tr>
       </table>
       <Link to={"/"}>
-        <img
-          src="../../../public/assets/images/close_FILL0_wght400_GRAD0_opsz48.svg"
-          alt="exit cross"
-          className="brewerInfo__exit"
-        />
+        <img src={close} alt="exit cross" className="brewerInfo__exit" />
       </Link>
     </div>
   );

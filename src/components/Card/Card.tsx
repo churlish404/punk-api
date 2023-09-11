@@ -1,6 +1,8 @@
 import "./Card.scss";
 import { Beer } from "../../types/beer";
 import { Link } from "react-router-dom";
+import beerImage from "../../../public/assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg";
+import foodImage from "../../../public/assets/images/lunch_dining_FILL0_wght400_GRAD0_opsz48.svg";
 
 type CardProps = {
   name: string;
@@ -50,13 +52,13 @@ const Card = ({
           <Link to={`/${id}`} key={id}>
             <img
               className="card__link--brewing"
-              src="../../assets/images/sports_bar_FILL0_wght400_GRAD0_opsz48.svg"
+              src={beerImage}
               alt="brewers-corner link"
             />
           </Link>
           <img
             className="card__link--food"
-            src="../../assets/images/lunch_dining_FILL0_wght400_GRAD0_opsz48.svg"
+            src={foodImage}
             alt="food pairing link"
           />
         </div>
